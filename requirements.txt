@@ -1,0 +1,22 @@
+# ModGuard 2.0 - Steam Mod 恶意代码检测工具
+# 安装命令: pip install -r requirements.txt
+
+# === GUI 框架 ===
+PyQt6>=6.4.0
+
+# === 静态分析 ===
+yara-python>=4.3.0          # YARA规则引擎
+pefile>=2023.2.7            # PE文件解析
+
+# === .NET/IL 分析 ===
+dnfile>=0.14.0              # .NET PE 解析
+pydnlib>=0.1.0              # .NET 元数据读取 (备选)
+
+# === 压缩包处理 ===
+py7zr>=0.20.0               # 7z格式
+rarfile>=4.1                # RAR格式 (需要unrar)
+zipfile-deflate64>=0.2.0    # 增强ZIP支持
+
+# === 工具库 ===
+chardet>=5.0.0              # 编码检测
+rich>=13.0.0                # 美化终端输出 (调试用)
