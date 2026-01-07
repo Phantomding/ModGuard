@@ -1,0 +1,141 @@
+{
+    "version": "1.0",
+    "description": ".NET IL 危险 API 签名库",
+    "categories": {
+        "credential_theft": {
+            "severity": "critical",
+            "description": "凭证窃取相关 API",
+            "signatures": [
+                "System.IO.File::ReadAllText",
+                "System.IO.File::ReadAllBytes",
+                "System.IO.File::ReadAllLines",
+                "System.IO.StreamReader::ReadToEnd",
+                "System.Security.Cryptography.ProtectedData::Unprotect"
+            ]
+        },
+        "data_exfiltration": {
+            "severity": "critical", 
+            "description": "数据外传相关 API",
+            "signatures": [
+                "System.Net.WebClient::UploadData",
+                "System.Net.WebClient::UploadFile",
+                "System.Net.WebClient::UploadString",
+                "System.Net.WebClient::UploadValues",
+                "System.Net.Http.HttpClient::PostAsync",
+                "System.Net.Http.HttpClient::PutAsync",
+                "System.Net.Http.HttpClient::SendAsync",
+                "System.Net.Mail.SmtpClient::Send",
+                "System.Net.Sockets.Socket::Send",
+                "System.Net.Sockets.TcpClient"
+            ]
+        },
+        "process_execution": {
+            "severity": "critical",
+            "description": "进程执行/代码注入",
+            "signatures": [
+                "System.Diagnostics.Process::Start",
+                "System.Diagnostics.ProcessStartInfo",
+                "System.Reflection.Assembly::Load",
+                "System.Reflection.Assembly::LoadFrom",
+                "System.Reflection.Assembly::LoadFile",
+                "System.Runtime.InteropServices.Marshal::GetDelegateForFunctionPointer",
+                "System.AppDomain::ExecuteAssembly",
+                "Microsoft.CSharp.CSharpCodeProvider::CompileAssemblyFromSource"
+            ]
+        },
+        "registry_access": {
+            "severity": "medium",
+            "description": "注册表访问",
+            "signatures": [
+                "Microsoft.Win32.Registry::GetValue",
+                "Microsoft.Win32.Registry::SetValue",
+                "Microsoft.Win32.RegistryKey::OpenSubKey",
+                "Microsoft.Win32.RegistryKey::CreateSubKey",
+                "Microsoft.Win32.RegistryKey::DeleteSubKey"
+            ]
+        },
+        "filesystem_sensitive": {
+            "severity": "high",
+            "description": "敏感文件操作",
+            "signatures": [
+                "System.IO.File::Copy",
+                "System.IO.File::Move",
+                "System.IO.File::Delete",
+                "System.IO.Directory::GetFiles",
+                "System.IO.Directory::GetDirectories",
+                "System.IO.DirectoryInfo::GetFiles",
+                "System.IO.Path::GetTempPath",
+                "System.Environment::GetFolderPath"
+            ]
+        },
+        "crypto_suspicious": {
+            "severity": "medium",
+            "description": "加密解密操作",
+            "signatures": [
+                "System.Security.Cryptography.Aes",
+                "System.Security.Cryptography.AesCryptoServiceProvider",
+                "System.Security.Cryptography.RijndaelManaged",
+                "System.Security.Cryptography.DESCryptoServiceProvider",
+                "System.Convert::FromBase64String",
+                "System.Convert::ToBase64String",
+                "System.Text.Encoding::GetBytes"
+            ]
+        },
+        "screen_capture": {
+            "severity": "high",
+            "description": "屏幕截图/键盘记录",
+            "signatures": [
+                "System.Drawing.Graphics::CopyFromScreen",
+                "System.Windows.Forms.Screen",
+                "System.Windows.Forms.Clipboard",
+                "GetAsyncKeyState",
+                "SetWindowsHookEx"
+            ]
+        },
+        "persistence": {
+            "severity": "critical",
+            "description": "持久化机制",
+            "signatures": [
+                "Microsoft.Win32.TaskScheduler",
+                "System.ServiceProcess.ServiceInstaller",
+                "CurrentVersion\\Run",
+                "CurrentVersion\\RunOnce"
+            ]
+        },
+        "steam_specific": {
+            "severity": "high",
+            "description": "Steam 相关敏感操作",
+            "signatures": [
+                "Steamworks",
+                "SteamClient",
+                "ISteamUser",
+                "GetSteamID",
+                "ssfn",
+                "loginusers.vdf",
+                "config.vdf"
+            ]
+        },
+        "unity_modding": {
+            "severity": "low",
+            "description": "Unity Mod 常用但需注意的 API",
+            "signatures": [
+                "UnityEngine.Application::OpenURL",
+                "UnityEngine.WWW",
+                "UnityEngine.Networking.UnityWebRequest",
+                "BepInEx",
+                "MelonLoader",
+                "Harmony"
+            ]
+        }
+    },
+    "whitelist": {
+        "description": "常见安全库，出现时降低风险评分",
+        "namespaces": [
+            "Newtonsoft.Json",
+            "System.Linq",
+            "System.Collections.Generic",
+            "UnityEngine.UI",
+            "UnityEngine.Transform"
+        ]
+    }
+}

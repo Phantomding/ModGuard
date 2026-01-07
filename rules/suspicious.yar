@@ -1,0 +1,1 @@
+rule ExampleRule { strings: $a = "example" condition: $a }
